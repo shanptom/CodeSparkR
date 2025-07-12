@@ -1,6 +1,21 @@
-# CodeSparkR
 
-CodeSparkR lets you access 400+ large language models (including paid ones) right from your R console via  [OpenRouter](https://openrouter.ai). It returns responses as ready-to-run .Rmd code chunks, making it easy to integrate AI-generated code into your workflow. You can also choose to save and open responses directly in RStudio as .Rmd files.
+# 🚀 CodeSparkR
+
+**Supercharge your R workflow with AI-powered coding assistance.**
+
+Access 400+ large language models (including premium ones) directly from your R console and get instant, executable code. No more copy-pasting or context switching—just pure productivity.
+
+✨ **What makes CodeSparkR special:**
+- 🤖 **400+ LLMs at your fingertips** – Including paid models, all accessible from R
+- 📝 **Ready-to-run code chunks** – Responses come as `.Rmd` files you can execute immediately  
+- 🔗 **Smart context handling** – Attach files directly, no more massive copy-paste sessions
+- 🎯 **RStudio integration** – Save and open AI responses as `.Rmd` files seamlessly
+- ⚡ **Streamlined workflow** – From prompt to production code in seconds
+
+Perfect for data scientists, analysts, and R developers who want to leverage AI without breaking their flow.
+
+---
+
 
 ## 📦 Installation
 
@@ -149,4 +164,3 @@ This package uses:
 * `magrittr`
 * `tools`
 
-Make sure these are installed before using.
