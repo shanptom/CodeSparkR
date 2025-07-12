@@ -1,0 +1,15 @@
+Package: CodeSparkR
+Title: AI Assistance and Code Integration in R/RStudio
+Version: 1.0
+Authors@R: person("Shan", "Thomas", email = "shanptom@gmail.com", role = c("aut", "cre"))
+Description: Provides an interface to AI models via OpenRouter, enabling in-console assistance, context file integration, and generation of runnable R Markdown output for coding and debugging within R/RStudio.
+Depends: R (>= 3.5.0)
+Imports: httr, jsonlite, stringr, magrittr, tools
+License: MIT
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+NeedsCompilation: no
+Packaged: 2025-07-11 20:07:59 UTC; shanb
+Author: Shan Thomas [aut, cre]
+Maintainer: Shan Thomas <shanptom@gmail.com>
