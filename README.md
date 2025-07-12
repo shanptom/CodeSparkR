@@ -24,7 +24,7 @@ devtools::install()
 
 ## 🚀 Functions
 
-### `ask_aiPro(prompt, model, context_files, ...)`
+### `ask_ai(prompt, model, context_files, ...)`
 
 Send a prompt to a supported OpenRouter model with advanced options.
 
@@ -62,7 +62,7 @@ This function supports:
 **Example:**
 
 ```r
-ask_aiPro(
+ask_ai(
   prompt = "Summarize the key differences between these two R scripts.",
   model = "google/gemini-2.0-pro",
   context_files = c("script1.R", "script2.R")
@@ -71,7 +71,7 @@ ask_aiPro(
 
 ## 🔐 API Key Setup
 
-To use the `ask_aiPro` function (and other functions in this package that interact with OpenRouter), you only need to set your **OpenRouter API Key**.
+To use the `ask_ai` function (and other functions in this package that interact with OpenRouter), you only need to set your **OpenRouter API Key**.
 
 If you have added API keys for specific models (like Google's Gemini, Anthropic's Claude, etc.) on the OpenRouter website, OpenRouter will automatically use those keys when you select the corresponding model. You **do not** need to set separate environment variables for each model provider in your R environment.
 
