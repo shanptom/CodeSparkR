@@ -45,7 +45,7 @@ You have two ways to store the key securely:
 2. Add this line (replace with your actual key):
 
    ```
-   OPENROUTER_API_KEY="your_actual_key_here"
+   OPENROUTER_API_KEY="your_key"
    ```
 
 3. Save and restart your R session for the change to take effect.
