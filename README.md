@@ -73,7 +73,7 @@ To use **paid models** like Claude, Gemini, GPT or others, follow these steps:
 
 1. Visit the official website of the model you want to use (e.g., Anthropic, Google, OpenAI).
 2. Sign in and generate an API key from your account on that platform.
-3. Go to [OpenRouter Integrations](https://openrouter.ai/settings/integrations) (Settings > Integrations > BYOK).
+3. Go to [OpenRouter Integrations](https://openrouter.ai/settings/integrations).
 4. Paste the API key you obtained into the appropriate provider field (e.g., OpenAI, Google, etc.).
 
 Once set, OpenRouter will automatically use your provider-specific keys when calling those models.
