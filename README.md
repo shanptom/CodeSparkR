@@ -1,5 +1,5 @@
 
-# 🚀 CodeSparkR
+# CodeSparkR
 
 **Supercharge your R workflow with AI-powered coding assistance.**
 
@@ -152,7 +152,7 @@ ask_ai(
   context_files = c("script1.R", "script2.R")
 )
 ```
-
+For more examples, visit code [Wiki Page](https://github.com/shanptom/CodeSparkR/wiki).
 
 ## 🧩 Dependencies
 
