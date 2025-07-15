@@ -131,17 +131,6 @@ This function supports:
 * Optional raw or cleaned response return
 * Interactive file opening (RStudio)
 
-**Arguments:**
-
-* `prompt`: Main prompt to the model.
-* `model`: Model name.
-* `context_files`: A character vector of file paths.
-* `save_to_file`: Save response to `.Rmd` file.
-* `filename`: Custom filename (optional).
-* `format_output`: Pretty-print the response in console.
-* `return_cleaned`: If `TRUE`, returns a cleaned string.
-* `custom_timeout`: Override default timeout logic.
-* `open_file`: Open file after saving (interactive mode only).
 
 **Example:**
 
