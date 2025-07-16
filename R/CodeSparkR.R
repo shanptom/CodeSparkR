@@ -253,7 +253,7 @@ ask_ai <- function(prompt,
 }
 
 
-#' Get Available LLM Model IDs from OpenRouter
+#' Get Available LLM Model IDs from OpenRouter.
 #'
 #' This function queries the OpenRouter public API to retrieve a list of all available models.
 #' You can optionally filter the models by a search string (e.g., "free", "claude", "gpt").
@@ -276,9 +276,7 @@ getModel_list <- function(search = NULL) {
     stop("Package 'jsonlite' is required but not installed.")
   }
   
-  # Use packages
-  library(httr)
-  library(jsonlite)
+
   
   # API endpoint
   url <- "https://openrouter.ai/api/v1/models"

@@ -5,7 +5,7 @@ Authors@R: person("Shan", "Thomas", email = "shanptom@gmail.com", role = c("aut"
 Description: Provides an interface to AI models via OpenRouter, enabling in-console assistance, context file integration, and generation of runnable R Markdown output for coding and debugging within R/RStudio.
 Depends: R (>= 3.5.0)
 Imports: httr, jsonlite, stringr, magrittr, tools
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
