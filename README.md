@@ -118,9 +118,7 @@ ask_ai(
 
 ```
 
-## 🚀 Functions
-
-### `ask_ai(prompt, model, context_files, ...)`
+## 🚀 Function: `ask_ai(prompt, model, context_files, ...)`
 
 Send a prompt to a supported OpenRouter model with advanced options.
 
@@ -162,6 +160,5 @@ This package uses:
 * `httr`
 * `jsonlite`
 * `stringr`
-* `magrittr`
 * `tools`
 
