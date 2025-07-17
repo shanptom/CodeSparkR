@@ -100,7 +100,7 @@ Once set, OpenRouter will automatically use your provider-specific keys when cal
 
 ## 🔹 View Available Models
 
-The `getModel_list()` function retrieves the full list of available large language models (LLMs) from the OpenRouter. By default, it lists all models, but users can provide a search string (e.g., "free", "claude", "gpt") to filter and display only those that match the query. This is particularly useful for identifying free-to-use models, which can be selected by calling getModel_list("free"). Users can then browse the results and manually choose a specific model ID to use in the model argument of `ask_ai()`. Note that while the function may return multiple matches, only one model ID should be used at a time when querying the API. This utility helps streamline model selection and ensures compatibility with OpenRouter's evolving model catalog.
+The `getModel_list()` function retrieves the full list of available large language models (LLMs) from the OpenRouter. By default, it lists all models, but users can provide a search string (e.g., "free", "claude", "gpt") to filter and display only those that match the query. This is particularly useful for identifying free-to-use models, which can be selected by calling `getModel_list("free")`. Users can then browse the results and manually choose a specific model ID to use in the model argument of `ask_ai()`. Note that while the function may return multiple matches, only one model ID should be used at a time when querying the API. This utility helps streamline model selection and ensures compatibility with OpenRouter's evolving model catalog.
 
 ```r
 
