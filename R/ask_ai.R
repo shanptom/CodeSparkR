@@ -1,10 +1,5 @@
 # CodeSparkR_openrouter.R
 
-# Required libraries
-library(httr)
-library(jsonlite)
-library(stringr)
-library(magrittr)
 
 # Null-coalescing operator
 `%||%` <- function(a, b) if (is.null(a)) b else a
@@ -29,6 +24,7 @@ library(magrittr)
 #' @param open_file Logical. Whether to open the Rmd file after saving (interactive mode only). Default is FALSE.
 #'
 #' @return Invisibly returns the model response as a character string (cleaned or raw based on `return_cleaned`).
+#' @importFrom utils file.edit
 #' @export
 #'
 #' @examples
@@ -240,7 +236,11 @@ ask_ai <- function(prompt,
       cat("💾 Saved to", filename, "\n")
 
       if (open_file && interactive()) {
-        file.edit(filename)
+        if (requireNamespace("rstudioapi", quietly = TRUE) && rstudioapi::isAvailable()) {
+          rstudioapi::navigateToFile(filename)
+        } else {
+          file.edit(filename)
+        }
       }
     }
   }
@@ -250,4 +250,54 @@ ask_ai <- function(prompt,
   } else {
     invisible(raw_text)
   }
+}
+
+#' Get Available LLM Model IDs from OpenRouter.
+#'
+#' This function queries the OpenRouter public API to retrieve a list of all available models.
+#' You can optionally filter the models by a search string (e.g., "free", "claude", "gpt").
+#'
+#' @param search Optional character string to filter models by ID or name (case-insensitive).
+#'
+#' @return A character vector of matching model IDs.
+#' @export
+#'
+#' @examples
+#' getModel_list()             # All available model IDs
+#' getModel_list("free")       # Filter models containing "free"
+#' getModel_list("claude")     # Filter models containing "claude"
+getModel_list <- function(search = NULL) {
+  # Load required packages
+  if (!requireNamespace("httr", quietly = TRUE)) {
+    stop("Package 'httr' is required but not installed.")
+  }
+  if (!requireNamespace("jsonlite", quietly = TRUE)) {
+    stop("Package 'jsonlite' is required but not installed.")
+  }
+  
+
+  
+  # API endpoint
+  url <- "https://openrouter.ai/api/v1/models"
+  
+  # Send GET request
+  resp <- httr::GET(url)
+  
+  # Check for request failure
+  if (httr::http_error(resp)) {
+    stop("OpenRouter API request failed: ", httr::status_code(resp))
+  }
+  
+  # Parse JSON response
+  raw_json <- httr::content(resp, as = "text", encoding = "UTF-8")
+  models <- jsonlite::fromJSON(raw_json, flatten = TRUE)$data
+  
+  # Apply search filter if provided
+  if (!is.null(search)) {
+    models <- models[grepl(search, models$id, ignore.case = TRUE) |
+                       grepl(search, models$name, ignore.case = TRUE), ]
+  }
+  
+  # Return model IDs
+  return(models$id)
 }

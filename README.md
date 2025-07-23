@@ -131,18 +131,6 @@ This function supports:
 * Optional raw or cleaned response return
 * Interactive file opening (RStudio)
 
-**Arguments:**
-
-* `prompt`: Main prompt to the model.
-* `model`: Model name.
-* `context_files`: A character vector of file paths.
-* `save_to_file`: Save response to `.Rmd` file.
-* `filename`: Custom filename (optional).
-* `format_output`: Pretty-print the response in console.
-* `return_cleaned`: If `TRUE`, returns a cleaned string.
-* `custom_timeout`: Override default timeout logic.
-* `open_file`: Open file after saving (interactive mode only).
-
 **Example:**
 
 ```r
@@ -151,6 +139,104 @@ ask_ai(
   model = "google/gemini-2.0-pro",
   context_files = c("script1.R", "script2.R")
 )
+```
+
+### `ask_ai2(prompt, model, context_files, ..., use_context = TRUE, system_prompt = NULL, role = "user")`
+
+Sends a prompt to an AI model using the OpenRouter API with persistent conversation memory. This function maintains chat history across calls and supports the same features as `ask_ai()`.
+
+**Key Difference from `ask_ai()`:** `ask_ai2()` maintains a persistent chat history and allows for setting a background context, enabling multi-turn conversations and more nuanced interactions with the AI model.
+
+**Arguments:**
+
+* `prompt`: Character. The prompt or instruction for the model.
+* `model`: Optional character. The model name (e.g., `"google/gemini-2.5-pro"`). Prompts interactively if `NULL`.
+* `context_files`: Optional character vector. File paths to one or more context files.
+* `save_to_file`: Logical. If `TRUE`, saves the output to a .Rmd file. Default is `FALSE`.
+* `filename`: Optional character. Filename to save the output if `save_to_file = TRUE`.
+* `format_output`: Logical. Whether to clean and print the response to console. Default is `TRUE`.
+* `return_cleaned`: Logical. If `TRUE`, returns cleaned text. If `FALSE`, returns raw output. Default is `TRUE`.
+* `custom_timeout`: Optional numeric. Timeout in seconds. Auto-computed if `NULL`.
+* `open_file`: Logical. Whether to open the Rmd file after saving (interactive mode only). Default is `FALSE`.
+* `use_context`: Logical. Whether to include persistent context set via `set_context()`. Default is `TRUE`.
+* `system_prompt`: Optional character. System prompt to prepend to the conversation.
+* `role`: Character. Role for the current message ("user", "assistant", "system"). Default is "user".
+
+**Example:**
+
+```r
+# Start a conversation
+ask_ai2(prompt = "Hello, what is the capital of France?", model = "google/gemini-2.0-flash")
+
+
+# Continue the conversation, model remembers previous turns
+ask_ai2(prompt = "And what is the main river flowing through it?", model = "google/gemini-2.0-flash")
+
+
+# Clear chat history
+clear_chat()
+```
+
+### `set_context(content, id = "codespark_context", metadata = list())`
+
+Sets a persistent background context for the current R session. This context will be included in all subsequent `ask_ai2()` calls where `use_context` is `TRUE`.
+
+**Arguments:**
+
+* `content`: Character. The text content to set as the background context.
+* `id`: Optional character. A unique identifier for the context. Default is `"codespark_context"`.
+* `metadata`: Optional list. Additional metadata associated with the context.
+
+**Example:**
+
+```r
+set_context("The user is a data scientist working with R and Python.")
+response <- ask_ai2(prompt = "Suggest a good library for data visualization.", model = "google/gemini-2.0-flash")
+print(response)
+```
+
+### `clear_context()`
+
+Clears the currently set persistent background context.
+
+**Example:**
+
+```r
+clear_context()
+```
+
+### `show_context()`
+
+Shows the currently set persistent background context.
+
+**Returns:** A list containing the context details (id, type, content, metadata) or `NULL` if no context is set.
+
+**Example:**
+
+```r
+show_context()
+```
+
+### `clear_chat()`
+
+Clears the running chat history for `ask_ai2()`.
+
+**Example:**
+
+```r
+clear_chat()
+```
+
+### `show_chat()`
+
+Shows the current chat history for `ask_ai2()`.
+
+**Returns:** A list of messages representing the conversation history.
+
+**Example:**
+
+```r
+show_chat()
 ```
 
 
@@ -163,4 +249,3 @@ This package uses:
 * `stringr`
 * `magrittr`
 * `tools`
-
