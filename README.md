@@ -1,16 +1,15 @@
 
-# 🚀 CodeSparkR
+# CodeSparkR
 
 **Supercharge your R workflow with AI-powered coding assistance.**
 
-Access 400+ large language models (including premium ones) directly from your R console and get instant, executable code. No more copy-pasting or context switching—just pure productivity.
+Access large language models (including premium ones) directly from your R console and get instant, executable code. No more copy-pasting or context switching—just pure productivity.
 
-✨ **What makes CodeSparkR special:**
-- 🤖 **400+ LLMs at your fingertips** – Including paid models, all accessible from R
-- 📝 **Ready-to-run code chunks** – Responses come as `.Rmd` files you can execute immediately  
-- 🔗 **Smart context handling** – Attach files directly, no more massive copy-paste sessions
-- 🎯 **RStudio integration** – Save and open AI responses as `.Rmd` files seamlessly
-- ⚡ **Streamlined workflow** – From prompt to production code in seconds
+-  **400+ LLMs** – Including paid models, all accessible from R
+-  **Ready-to-run code chunks** – Responses come as `.Rmd` files you can execute immediately  
+-  **Smart context handling** – Attach files directly, no more massive copy-paste sessions
+-  **RStudio integration** – Save and open AI responses as `.Rmd` files seamlessly
+-  **Streamlined workflow** – From prompt to production code in seconds
 
 Perfect for data scientists, analysts, and R developers who want to leverage AI without breaking their flow.
 
@@ -32,6 +31,7 @@ Or, clone the repo and install locally:
 git clone https://github.com/shanptom/CodeSparkR.git
 cd CodeSparkR
 ```
+then in R:
 
 ```r
 devtools::install()
@@ -53,11 +53,11 @@ To use CodeSparkR, you’ll need an **OpenRouter API key**.
 
 You have two ways to store the key securely:
 
-#### ✅ Option 1 (Recommended): Add to `.Renviron`
+####  Option 1 (Recommended): Add to `.Renviron`
 
-1. Open (or create) a file named `.Renviron` in your R home or project directory.
+1. Open (or create)  `.Renviron` in your R home or project directory.
 
-2. Add this line (replace with your actual key):
+2. Add this line (replace *"your_key"* with your actual key):
 
    ```
    OPENROUTER_API_KEY="your_key"
@@ -65,26 +65,29 @@ You have two ways to store the key securely:
 
 3. Save and restart your R session for the change to take effect.
 
-💡 Tip: You can run `usethis::edit_r_environ()` to open `.Renviron` in RStudio.
+   >  You can run `usethis::edit_r_environ()` to open `.Renviron` in RStudio.
 
 
 
-#### ⚠️ Option 2: Set Temporarily with `Sys.setenv()`
+####  Option 2: Set Temporarily with `Sys.setenv()`
 
-```r
-Sys.setenv(OPENROUTER_API_KEY = "your_actual_key_here")
-```
+   1. Run the following (replace *"your_key"* with your actual key):
+      
+      ```
+        Sys.setenv(OPENROUTER_API_KEY = "your_key")
+      ```
 
-Note: This works only for the current session and is not persistent.
+      > This works only for the current session and is not persistent.
 
 
 Once the key is set, you can use `ask_ai()`.
 
-### 💳 Accessing Paid Models (BYOK)
+
+## 💳 Accessing Paid Models (BYOK)
 
 By default, your OpenRouter API key gives access to **free-tier models**.
 
-To use **paid models** like Claude, Gemini, GPT or others, follow these steps:
+To use **paid models** like Claude, Gemini, GPT, or others, follow these steps:
 
 1. Visit the official website of the model you want to use (e.g., Anthropic, Google, OpenAI).
 2. Sign in and generate an API key from your account on that platform.
@@ -93,31 +96,38 @@ To use **paid models** like Claude, Gemini, GPT or others, follow these steps:
 
 Once set, OpenRouter will automatically use your provider-specific keys when calling those models.
 
+---
 
-### 🔹 View Available Models
+## 🔹 View Available Models
 
-To view the full list of supported models (over 400+ from 60+ providers), visit:
-[https://openrouter.ai/models](https://openrouter.ai/models)
+The `getModel_list()` function retrieves the full list of available large language models (LLMs) from the OpenRouter. By default, it lists all models, but users can provide a search string (e.g., "free", "claude", "gpt") to filter and display only those that match the query. This is particularly useful for identifying free-to-use models, which can be selected by calling `getModel_list("free")`. Users can then browse the results and manually choose a specific model ID to use in the model argument of `ask_ai()`. Note that while the function may return multiple matches, only one model ID should be used at a time when querying the API. This utility helps streamline model selection and ensures compatibility with OpenRouter's evolving model catalog.
 
-You can also:
+```r
 
-* Use the search bar to filter models by name, provider, or feature.
-* Type `free` into the search box to quickly list **free models**.
+# List all models
+getModel_list()
 
+# List only free-to-use models
+free_models <- getModel_list("free")
 
+# Use a selected model with ask_ai()
+ask_ai(
+  prompt = "Summarize the concept of phylogenetic diversity",
+  model = free_models[1]
+)
 
-## 🚀 Functions
+```
 
-### `ask_ai(prompt, model, context_files, ...)`
+## 🚀 Function: `ask_ai(prompt, model, context_files, ...)`
 
 Send a prompt to a supported OpenRouter model with advanced options.
 
 **Arguments:**
 
 * `prompt`: A character string with your question or instruction.
-* `model`: Optional character. The model name (e.g., `"google/gemini-2.5-pro"`). If `NULL`, the function will prompt interactively for the model name. A complete list of available models can be found at: https://openrouter.ai/models
+* `model`: Optional character. The model name (e.g., `"google/gemini-2.5-pro"`). If `NULL`, the function will prompt interactively for the model name. 
 * `context_files`: Optional character vector. File paths to one or more context files.
-* `save_to_file`: Logical. If `TRUE`, saves the output to a .Rmd file. Default is `FALSE`.
+* `save_to_file`: Logical. If `TRUE`, saves the output to an `.Rmd` file. Default is `FALSE`.
 * `filename`: Optional character. Filename to save the output if `save_to_file = TRUE`.
 * `format_output`: Logical. Whether to clean and print the response to console. Default is `TRUE`.
 * `return_cleaned`: Logical. If `TRUE`, returns cleaned text. If `FALSE`, returns raw output. Default is `TRUE`.
@@ -131,6 +141,10 @@ This function supports:
 * Optional raw or cleaned response return
 * Interactive file opening (RStudio)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 09487d03887eac44a04f9ca467c3f0847f81595d
 **Example:**
 
 ```r
@@ -247,5 +261,4 @@ This package uses:
 * `httr`
 * `jsonlite`
 * `stringr`
-* `magrittr`
 * `tools`

@@ -252,6 +252,10 @@ ask_ai <- function(prompt,
   }
 }
 
+<<<<<<< HEAD:R/ask_ai.R
+=======
+
+>>>>>>> 09487d03887eac44a04f9ca467c3f0847f81595d:R/CodeSparkR.R
 #' Get Available LLM Model IDs from OpenRouter.
 #'
 #' This function queries the OpenRouter public API to retrieve a list of all available models.
