@@ -141,10 +141,6 @@ This function supports:
 * Optional raw or cleaned response return
 * Interactive file opening (RStudio)
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 09487d03887eac44a04f9ca467c3f0847f81595d
 **Example:**
 
 ```r
